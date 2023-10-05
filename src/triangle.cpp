@@ -9,6 +9,6 @@ void Triangle::set_height(int h) {
 }
 
 int Triangle::area() {
-    return 0.5 * this->base * this->height;
+    return (0.5 * this->base * this->height) * 1.0;
 }
 

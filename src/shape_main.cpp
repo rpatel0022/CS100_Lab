@@ -1,23 +1,29 @@
 #include <iostream>
 #include "../header/rectangle.hpp"
-#include
+#include "../header/triangle.hpp"
 
 using namespace std;
 
 int main()
 {
     int answer; 
-    cout << "Choose (1) for traingle or choose (0) for rectangle" << endl; 
-    cin >> answer; 
+    do{
+        cout << "Choose (1) for traingle or choose (0) for rectangle" << endl; 
+        cin >> answer; 
+    } 
+    while (answer > 1 || answer < 0); 
 
     if (answer == 0){
         Rectangle rect;
         double w; 
         double h; 
-
-        if(w < 0 || h < 0){
-            return;   
+        do{
+            cout << "Enter the Width" << endl; 
+            cin >> w;
+            cout << "Enter the Height" << endl; 
+            cin >> h; 
         }
+        while (w < 0 || h < 0);
 
         rect.set_width(w);
         rect.set_height(h);
@@ -29,10 +35,14 @@ int main()
         Triangle tri;
         double b; 
         double h; 
-
-        if(b < 0 || h < 0){
-            return;   
+        do{
+            cout << "Enter the Base" << endl; 
+            cin >> b;
+            cout << "Enter the Height" << endl; 
+            cin >> h; 
         }
+        while (b < 0 || h < 0);
+
         tri.set_base(b); 
         tri.set_height(h); 
         cout << "Triangle area: " << tri.area() << endl; 
