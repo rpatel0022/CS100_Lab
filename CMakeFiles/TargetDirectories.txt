@@ -1,0 +1,4 @@
+/home/csmajs/rpate213/CS100_Lab/CMakeFiles/rebuild_cache.dir
+/home/csmajs/rpate213/CS100_Lab/CMakeFiles/edit_cache.dir
+/home/csmajs/rpate213/CS100_Lab/CMakeFiles/area_calculator.dir
+/home/csmajs/rpate213/CS100_Lab/CMakeFiles/shape_area_calculator.dir

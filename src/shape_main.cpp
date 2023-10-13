@@ -1,4 +1,5 @@
 #include <iostream>
+#include <limits> // Include limits for cin.ignore and cin.clear
 #include "../header/rectangle.hpp"
 #include "../header/triangle.hpp"
 
@@ -6,46 +7,123 @@ using namespace std;
 
 int main()
 {
-    int answer; 
-    do{
-        cout << "Choose (1) for traingle or choose (0) for rectangle" << endl; 
-        cin >> answer; 
-    } 
-    while (answer > 1 || answer < 0); 
+    int answer;
+    do {
+        cout << "Choose (1) for triangle or choose (0) for rectangle" << endl;
+        cin >> answer;
 
-    if (answer == 0){
-        Rectangle rect;
-        double w; 
-        double h; 
-        do{
-            cout << "Enter the Width" << endl; 
-            cin >> w;
-            cout << "Enter the Height" << endl; 
-            cin >> h; 
+        // Check if the input is not an integer
+        if (cin.fail()) {
+            cin.clear();             // Clear the error state
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Ignore the rest of the line
+            cout << "Invalid input. Please enter 0 or 1." << endl;
+            continue; // Restart the loop
         }
-        while (w < 0 || h < 0);
+    } while (answer > 1 || answer < 0);
+
+    if (answer == 0) {
+        Rectangle rect;
+        double w;
+        double h;
+        bool negative = false;
+
+        cout << "Enter the Width" << endl;
+        cin >> w;
+
+        if (w < 0 || cin.fail()) {
+            negative = true;
+        }
+
+        while (negative) {
+            cout << "Enter the Width" << endl;
+            cin >> w;
+            if (w > 0 && !cin.fail()) {
+                negative = false;
+            } else {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Invalid input. Please enter a positive number." << endl;
+            }
+        }
 
         rect.set_width(w);
-        rect.set_height(h);
-        cout << "Rectangle area: " << rect.area() << endl;
-        return 0;
-    }
 
-    else if(answer == 1){
-        Triangle tri;
-        double b; 
-        double h; 
-        do{
-            cout << "Enter the Base" << endl; 
-            cin >> b;
-            cout << "Enter the Height" << endl; 
-            cin >> h; 
+        negative = false;
+
+        cout << "Enter the Height" << endl;
+        cin >> h;
+
+        if (h < 0 || cin.fail()) {
+            negative = true;
         }
-        while (b < 0 || h < 0);
 
-        tri.set_base(b); 
-        tri.set_height(h); 
-        cout << "Triangle area: " << tri.area() << endl; 
-        return 0; 
+        while (negative) {
+            cout << "Enter the Height" << endl;
+            cin >> h;
+            if (h > 0 && !cin.fail()) {
+                negative = false;
+            } else {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Invalid input. Please enter a positive number." << endl;
+            }
+        }
+
+        rect.set_height(h);
+
+        cout << "Rectangle area: " << rect.area() << endl; 
+    } else if (answer == 1) {
+        Triangle tri;
+        double b;
+        double h;
+        bool negative = false;
+
+        cout << "Enter the Base" << endl;
+        cin >> b;
+
+        if (b < 0 || cin.fail()) {
+            negative = true;
+        }
+
+        while (negative) {
+            cout << "Enter the Base" << endl;
+            cin >> b;
+            if (b > 0 && !cin.fail()) {
+                negative = false;
+            } else {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Invalid input. Please enter a positive number." << endl;
+            }
+        }
+
+        tri.set_base(b);
+
+        negative = false;
+
+        cout << "Enter the Height" << endl;
+        cin >> h;
+
+        if (h < 0 || cin.fail()) {
+            negative = true;
+        }
+
+        while (negative) {
+            cout << "Enter the Height" << endl;
+            cin >> h;
+            if (h > 0 && !cin.fail()) {
+                negative = false;
+            } else {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Invalid input. Please enter a positive number." << endl;
+            }
+        }
+
+        tri.set_height(h);
+
+        cout << "Triangle area: " << tri.area() << endl;
     }
 }
+
+
